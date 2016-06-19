@@ -1,0 +1,65 @@
+@import "./fontawesome/font-awesome.less";
+@import "./fonts.less";
+
+@foreground: #171717;
+@background: #f1f1f1;
+
+@screen-small-min: 768px;
+@screen-medium-min: 992px;
+@screen-large-min: 1200px;
+@container-width: 800px;
+
+body, html, header, h1, small, div{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: @foreground;
+  background-color: @background;
+  position: relative;
+}
+
+
+header {
+  margin: 0;
+  text-align: center;
+  background-color: @foreground;
+  color: @background;
+  padding: 1rem;
+
+  h1 {
+    font-size: 2rem;
+
+    small {
+      font-size: 1rem;
+      font-weight: 300;
+    }
+  }
+}
+
+#container {
+  padding: 1rem 1rem 2rem 1rem;
+  margin: 0 auto;
+  width: 90%;
+  max-width: @screen-small-min;
+
+  img {
+
+    &.full {
+      width: 100%;
+    }
+
+    &.center-small {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+
+      @media (min-width: @screen-small-min) {
+        width: 50%;
+      }
+    }
+  }
+}
+
+
