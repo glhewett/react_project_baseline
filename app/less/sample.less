@@ -1,5 +1,6 @@
 @import "./fontawesome/font-awesome.less";
-@import "./fonts.less";
+@import "./ptsans/regular.less";
+@import "./ptsans/narrow.less";
 
 @foreground: #171717;
 @background: #f1f1f1;
@@ -15,11 +16,22 @@ body, html, header, h1, small, div{
 }
 
 body {
+  font-family: 'PT Sans', sans-serif;
   color: @foreground;
   background-color: @background;
   position: relative;
+  font-size: 18px;
+  line-height: 32px;
+
+  @media (min-width: @screen-small-min) {
+    font-size: 20px;
+    line-height: 36px;
+  }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
 
 header {
   margin: 0;

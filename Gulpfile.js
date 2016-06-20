@@ -5,12 +5,10 @@ var browserSync = require('browser-sync').create();
 var cssnano = require('gulp-cssnano');
 var RevAll = require('gulp-rev-all');
 var del = require('del');
-
-
-gulp.task('default', ['css', 'browser-sync', 'watch']);
+var htmlmin = require('gulp-htmlmin');
 
 gulp.task("css",  function() {
-  return gulp.src('./app/less/app.less')
+  return gulp.src('./app/less/*.less')
     .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(cssnano())
@@ -22,11 +20,11 @@ gulp.task("css",  function() {
 gulp.task('browser-sync', function() {
   browserSync.init({
     server: {
-      baseDir: "./public"
+      baseDir: "public",
+      directory: true
     }
   });
 });
-
 
 gulp.task('watch', function () {
   return gulp.watch(['./app/less/**/*.less'], ['css']);
@@ -36,9 +34,9 @@ gulp.task('clean', function() {
     return del(['./build'])
 });
 
-gulp.task('copyFiles', ['clean', 'css'], function() {
+gulp.task('revAllFiles', ['clean', 'css'], function() {
   var revAll = new RevAll({
-    dontRenameFile: [/.*\.html$/g, /.*\.map$/g]
+    dontRenameFile: [/.*\.html$/g]
   });
 
   return gulp.src("./public/**")
@@ -46,5 +44,11 @@ gulp.task('copyFiles', ['clean', 'css'], function() {
     .pipe(gulp.dest("./build"));
 });
 
-gulp.task('build', ['copyFiles']);
+gulp.task('build', ['revAllFiles'], function() {
+  return gulp.src("./build/**/*.html")
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest("./build"));
+});
+
+gulp.task('default', ['css', 'browser-sync', 'watch']);
 
