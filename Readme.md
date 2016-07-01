@@ -89,37 +89,36 @@ gulp build
 
 ### Allowing for upstream updates
 
-This project uses sample.html and sample.less to represent a sample use of the application.  Those files are not meant to be used in your application.  If you do use then, you will not be able to easily upgrade to upstream versions when they become available.  Also, updates to Gulpfile.js and packages.json will also cause challenges when rebasing to upstream.
+This project uses `sample.html` and `sample.less` to represent a sample use of the application.  Those files are not meant to be used in your application.  If you do use then, you will not be able to easily upgrade to upstream versions when they become available.  Also, updates to `Gulpfile.js` and `packages.json` will also cause challenges when rebasing to upstream.
 
 If you want to update to the upstream repo, you may use the following commands:
 
 ```
 # fetch upstream changes
-Git fetch upstream
+git fetch upstream
 
 # rebate those changes to the current project.
-Got rebase upstream/master
+git rebase upstream/master
 ```
 
 
 Gulpfile.js
 -----------
 
-The Gulpfile.js file is the file that will manage tasks for the project.  It is responsible for managing the code that will build the CSS files and such.  Personally, I do not prefer gulp over another task management tool like grunt.  It just seems to be easy.  We could have a version of the project that uses grunt and it would behave almost the same.
+The `Gulpfile.js` file is the file that will manage tasks for the project.  It is responsible for managing the code that will build the CSS files and other assets.  Personally, I do not prefer gulp over another task management tool like grunt.  It just seems to be easy.  We could have a version of the project that uses grunt and it would behave almost the same.
 
-Why is the Gulpfile.js file capitalized?  This is a UNIX convention that will make sure that when you list the files in the current working directory, the project management files will be listed first.  UNIX `ls` will list the files that begin with a capital letter before the files that begins with a lower case letter.
+Why is the `Gulpfile.js` file capitalized?  This is a UNIX convention that will make sure that when you list the files in the current working directory, the project management files will be listed first.  UNIX `ls` will list the files that begin with a capital letter before the files that begins with a lower case letter.
 
 Layout
 ------
 
 The file structure has been chosen so that there is a minimal shuffling of files.
 
-The public directory will include all of the files that will be directly used by the browser.  This will include haml, images, and fonts.
+The public directory will include all of the files that will be directly used by the browser.  This will include html, images, and fonts.
 
 The app directory is a directory that will include all of the processed files.  In this project, the less files are build and placed into the public folder in dev-mode.
 
 The build directory is created when the build task is run, and it will be the folder that is copied to the web server when the site is ready to be deployed.
-
 
 Build & Deploy
 --------------
