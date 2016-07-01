@@ -1,13 +1,14 @@
 {
-  "name": "www.greghewett.com",
-  "version": "1.0.0",
-  "description": "Personal Website",
+  "name": "css_project_baseline",
+  "version": "0.0.1",
+  "description": "CSS Project",
   "main": "Gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": "git@github.com:glhewett/css_project_baseline.git",
   "devDependencies": {
     "browser-sync": "^2.13.0",
     "del": "^2.2.0",
@@ -16,7 +17,9 @@
     "gulp-cssnano": "^2.1.2",
     "gulp-htmlmin": "^2.0.0",
     "gulp-less": "^3.1.0",
+    "gulp-plumber": "^1.1.0",
     "gulp-rev-all": "^0.8.24",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7"
   }
 }
