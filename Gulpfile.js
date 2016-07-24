@@ -13,9 +13,21 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
-var env = require('gulp-env');
+var jest = require('jest-cli');
+var eslint = require('gulp-eslint');
 
-gulp.task("bundle:javascript", function() {
+gulp.task('clean', function() {
+  return del(['./build'])
+});
+
+gulp.task('lint:javascript', function() {
+  return gulp.src(['./app/js/**/*.+(js|jsx)', './__tests__/**/*.+(js|jsx)', 'Gulpfile.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task("bundle:javascript", ['lint:javascript'], function() {
 
   return browserify({
     entries: './app/js/index.jsx',
@@ -29,7 +41,7 @@ gulp.task("bundle:javascript", function() {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./public/js/'))
+    .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task("bundle:css",  function() {
@@ -45,40 +57,48 @@ gulp.task("bundle:css",  function() {
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('browser-sync', function() {
+// gulp.task('watch:javascript', ['bundle:javascript'], browserSync.reload);
+gulp.task('watch', ['bundle:javascript', 'bundle:css'], function() {
+  gulp.watch(['./app/less/**/*.less'], ['bundle:css']);
+  gulp.watch(['./app/js/**/*.+(js|jsx)'], ['bundle:javascript']);
+});
+
+gulp.task('serve', ['watch'], function () {
+
   browserSync.init({
+    open: false,
+    files: [
+      'public/js/*.js',
+      'public/css/*.css',
+      'public/index.html'
+    ],
+    injectChanges: true,
     server: {
-      baseDir: "public",
-      directory: true
+      baseDir: "public"
     }
   });
+
 });
 
-gulp.task('watch', function () {
-  gulp.watch(['./app/less/**/*.less'], ['bundle:css', browserSync.stream]);
-  gulp.watch(['./app/js/**/*.js[x]'], ['bundle:javascript', browserSync.reload]);
-  gulp.watch(['./public/**/*.html'], browserSync.reload);
+gulp.task('jest', ['lint:javascript'], function(done) {
+  jest.runCLI({}, __dirname, function() {
+    done();
+  })
 });
 
-gulp.task('clean', function() {
-  return del(['./build'])
-});
-
-gulp.task('revAllFiles', ['clean', 'bundle:css', 'bundle:javascript'], function() {
-  var revAll = new RevAll({
-    dontRenameFile: [/.*\.html$/g]
-  });
-
-  return gulp.src("./public/**")
-    .pipe(revAll.revision())
-    .pipe(gulp.dest("./build"));
-});
-
-gulp.task('build', ['revAllFiles'], function() {
+gulp.task('minify:html', function() {
   return gulp.src("./build/**/*.html")
     .pipe(htmlmin({collapseWhitespace: true}))
     .pipe(gulp.dest("./build"));
 });
 
-gulp.task('default', ['bundle:css', 'bundle:javascript', 'browser-sync', 'watch']);
+gulp.task('build', ['clean', 'bundle:css', 'bundle:javascript', 'minify:html'], function() {
+  var revAll = new RevAll({
+    dontRenameFile: [/.*\.html$/g]
+  });
+  return gulp.src("./public/**")
+    .pipe(revAll.revision())
+    .pipe(gulp.dest("./build"));
+});
 
+gulp.task('default', ['serve']);

@@ -10,6 +10,12 @@
 @screen-large-min: 1200px;
 @container-width: 800px;
 
+.center-vert {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 body, html, header, h1, small, div{
   margin: 0;
   padding: 0;
@@ -17,8 +23,6 @@ body, html, header, h1, small, div{
 
 body {
   font-family: 'PT Sans', sans-serif;
-  color: @foreground;
-  background-color: @background;
   position: relative;
   font-size: 18px;
   line-height: 32px;
@@ -33,44 +37,23 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'PT Sans Narrow', sans-serif;
 }
 
-header {
-  margin: 0;
-  text-align: center;
-  background-color: @foreground;
+#container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   color: @background;
-  padding: 1rem;
+  background-color: @foreground;
+  height: 100%;
 
   h1 {
-    font-size: 2rem;
-
-    small {
-      font-size: 1rem;
-      font-weight: 300;
-    }
-  }
-}
-
-#container {
-  padding: 1rem 1rem 2rem 1rem;
-  margin: 0 auto;
-  width: 90%;
-  max-width: @screen-small-min;
-
-  img {
-
-    &.full {
-      width: 100%;
-    }
-
-    &.center-small {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-
-      @media (min-width: @screen-small-min) {
-        width: 50%;
-      }
-    }
+    margin: 0 9rem;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px dashed @background;
+    border-bottom: 1px dashed @background;
+    .center-vert();
   }
 }
 
