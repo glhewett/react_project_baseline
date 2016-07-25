@@ -5,7 +5,6 @@ var browserSync = require('browser-sync').create();
 var cssnano = require('gulp-cssnano');
 var RevAll = require('gulp-rev-all');
 var del = require('del');
-var htmlmin = require('gulp-htmlmin');
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
 var browserify = require('browserify');
@@ -36,6 +35,10 @@ gulp.task("bundle:javascript", ['lint:javascript'], function() {
   })
     .transform(babelify)
     .bundle()
+    .on('error', function (error) {
+      gutil.log(gutil.colors.red(error.message));
+      this.emit('end');
+    })
     .pipe(source('app.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -57,7 +60,6 @@ gulp.task("bundle:css",  function() {
     .pipe(gulp.dest('./public/css'));
 });
 
-// gulp.task('watch:javascript', ['bundle:javascript'], browserSync.reload);
 gulp.task('watch', ['bundle:javascript', 'bundle:css'], function() {
   gulp.watch(['./app/less/**/*.less'], ['bundle:css']);
   gulp.watch(['./app/js/**/*.+(js|jsx)'], ['bundle:javascript']);
@@ -70,6 +72,7 @@ gulp.task('serve', ['watch'], function () {
     files: [
       'public/js/*.js',
       'public/css/*.css',
+      'public/images/**/*',
       'public/index.html'
     ],
     injectChanges: true,
@@ -77,7 +80,6 @@ gulp.task('serve', ['watch'], function () {
       baseDir: "public"
     }
   });
-
 });
 
 gulp.task('jest', ['lint:javascript'], function(done) {
@@ -86,13 +88,7 @@ gulp.task('jest', ['lint:javascript'], function(done) {
   })
 });
 
-gulp.task('minify:html', function() {
-  return gulp.src("./build/**/*.html")
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest("./build"));
-});
-
-gulp.task('build', ['clean', 'bundle:css', 'bundle:javascript', 'minify:html'], function() {
+gulp.task('build', ['clean', 'bundle:css', 'bundle:javascript'], function() {
   var revAll = new RevAll({
     dontRenameFile: [/.*\.html$/g]
   });

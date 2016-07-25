@@ -47,13 +47,26 @@ h1, h2, h3, h4, h5, h6 {
   background-color: @foreground;
   height: 100%;
 
-  h1 {
+  #banner {
     margin: 0 9rem;
     padding: 2rem 0;
-    text-align: center;
     border-top: 1px dashed @background;
     border-bottom: 1px dashed @background;
     .center-vert();
+    text-align: center;
+
+    h1 {
+      text-align: center;
+    }
+
+    button {
+      margin: 1em;
+      padding: 1em;
+      border: 2px solid @background;
+      background-color: @foreground;
+      color: @background;
+      font-size: 2em;
+    }
   }
 }
 
