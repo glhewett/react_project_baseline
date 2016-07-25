@@ -53,6 +53,12 @@
       "<rootDir>/node_modules/react-redux/"
     ]
   },
+  "babel": {
+    "presets": ["es2015", "react"],
+    "plugins": [
+      "transform-class-properties"
+    ]
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "plugins": [
