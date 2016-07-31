@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './reducers';
-import AppConnect from './app-connect';
+import { createStore, combineReducers } from 'redux';
+import * as reducers from './reducers';
+import AppConnect from './AppConnect';
 
-let store = createStore(reducers)
+let store = createStore(combineReducers(reducers))
 
 ReactDOM.render(
   <Provider store={store}>

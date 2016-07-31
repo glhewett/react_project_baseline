@@ -4,7 +4,8 @@
   "description": "React Project",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "jest"
+    "test": "gulp test",
+    "build": "gulp build"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "browser-sync": "^2.13.0",
     "browserify": "^13.0.1",
     "del": "^2.2.0",
+    "enzyme": "^2.4.1",
     "eslint": "^3.1.1",
     "eslint-plugin-react": "^5.2.2",
     "gulp": "^3.9.1",
@@ -45,16 +47,32 @@
     "redux": "^3.5.2"
   },
   "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react/",
-      "<rootDir>/node_modules/react-dom/",
-      "<rootDir>/node_modules/react-addons-test-utils/",
-      "<rootDir>/node_modules/redux/",
-      "<rootDir>/node_modules/react-redux/"
+      "react",
+      "react-dom",
+      "react-addons-test-utils",
+      "redux",
+      "react-redux",
+      "fbjs",
+      "enzyme",
+      "cheerio",
+      "htmlparser2",
+      "lodash",
+      "domhandler",
+      "object.assign",
+      "define-properties",
+      "function-bind",
+      "object-keys",
+      "object.values",
+      "es-abstract"
     ]
   },
   "babel": {
-    "presets": ["es2015", "react"],
+    "presets": [
+      "es2015",
+      "react"
+    ],
     "plugins": [
       "transform-class-properties"
     ]

@@ -5,7 +5,8 @@ import {
   decrementCounter
 } from './actions';
 
-class HelloWorld extends React.Component {
+
+class App extends React.Component {
 
   static propTypes = {
     dispatch: React.PropTypes.func.isRequired,
@@ -27,18 +28,12 @@ class HelloWorld extends React.Component {
   render() {
     return (
       <div id="banner">
-        <h1>
-          <i className="fa fa-star-o" ></i>
-          &nbsp;{this.props.counter}&nbsp;
-          React is working!
-          &nbsp;{this.props.counter}&nbsp;
-          <i className="fa fa-star-o"></i>
-        </h1>
-        <button onClick={this.incrementButtonClick.bind(this)}>Increment</button>
-        <button onClick={this.decrementButtonClick.bind(this)}>Decrement</button>
+        <h1><i className="fa fa-star-o" ></i> React is working!</h1>
+        <p>Current Counter: <span id="counter">{this.props.counter}</span></p>
+        <button id="incrementCounter" onClick={this.incrementButtonClick.bind(this)}>Increment</button>
+        <button id="decrementCounter" onClick={this.decrementButtonClick.bind(this)}>Decrement</button>
       </div>
     )
   }
 }
-
-export default HelloWorld
+export default App;

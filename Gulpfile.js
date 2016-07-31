@@ -82,7 +82,7 @@ gulp.task('serve', ['watch'], function () {
   });
 });
 
-gulp.task('jest', ['lint:javascript'], function(done) {
+gulp.task('test', ['lint:javascript'], function(done) {
   jest.runCLI({}, __dirname, function() {
     done();
   })

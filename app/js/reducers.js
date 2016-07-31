@@ -1,8 +1,13 @@
-import { combineReducers } from 'redux'
-import counter from './counter-reducer'
+export const counter = (state = 0, action) => {
+  switch (action.type) {
 
-const combinedReducers = combineReducers({
-  counter
-})
+    case 'INCREMENT':
+      return state + action.payload;
 
-export default combinedReducers;
+    case 'DECREMENT':
+      return state - action.payload;
+
+    default:
+      return state;
+  }
+}
