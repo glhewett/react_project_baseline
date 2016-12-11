@@ -1,3 +1,4 @@
+---
 machine:
   timezone:
     America/Chicago
@@ -19,6 +20,3 @@ deployment:
       - s3-deploy './dist/app.css' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
       - s3-deploy './dist/app.js' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
       - s3-deploy './dist/*.map' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-
-
-
