@@ -1,6 +1,6 @@
-jest.unmock('../app/js/reducers.js');
+jest.unmock('../app/reducers.js');
 
-import { counter } from '../app/js/reducers.js';
+import { counter } from '../app/reducers.js';
 
 describe('Redux Reducers', () => {
 
@@ -10,7 +10,7 @@ describe('Redux Reducers', () => {
       const result = counter(0,  {type: 'INCREMENT', payload: 1})
       expect(result).toBe(1);
     });
-  });
+  })
 
   describe('DECREMENT', () => {
 

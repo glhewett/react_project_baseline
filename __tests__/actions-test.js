@@ -1,9 +1,9 @@
-jest.unmock('../app/js/actions.js');
+jest.unmock('../app/actions.js');
 
 import {
   incrementCounter,
   decrementCounter
-} from '../app/js/actions.js';
+} from '../app/actions.js';
 
 describe('Redux Actions', () => {
 
