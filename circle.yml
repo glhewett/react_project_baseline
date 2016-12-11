@@ -9,12 +9,14 @@ machine:
 test:
   override:
     - npm run lint
-    - npm run test
+  - npm run test
+    environment:
+      JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/junit/test-results.xml
     - npm run build
   post:
     - mkdir -p $CIRCLE_ARTIFACTS
-    - cp -r dist $CIRCLE_ARTIFACTS
-    - cp -r coverage $CIRCLE_ARTIFACTS
+    - mv dist $CIRCLE_ARTIFACTS
+    - mv coverage $CIRCLE_ARTIFACTS
 deployment:
   production:
     branch: master
