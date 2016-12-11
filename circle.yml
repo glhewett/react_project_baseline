@@ -32,6 +32,6 @@ deployment:
   production:
     branch: master
     commands:
-      - s3-deploy './dist/images/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-      - s3-deploy './dist/fonts/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-      - s3-deploy './dist/*' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - node_modules/.bin/s3-deploy './dist/images/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - node_modules/.bin/s3-deploy './dist/fonts/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - node_modules/.bin/s3-deploy './dist/*' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
