@@ -4,6 +4,8 @@ machine:
     America/Chicago
   environment:
     BROCCOLI_ENV: production
+    JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/junit/test-results.xml
+    JEST_SUITE_NAME: "Jest Unit Tests"
   node:
     version: 6.4.0
 dependencies:
@@ -12,10 +14,7 @@ dependencies:
 test:
   override:
     - npm run lint
-    - npm run test:
-      - environment:
-        JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/junit/test-results.xml
-        JEST_SUITE_NAME: "Jest Unit Tests"
+    - npm run test
     - npm run build
   post:
     - mkdir -p $CIRCLE_ARTIFACTS
