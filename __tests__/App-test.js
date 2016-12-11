@@ -1,9 +1,9 @@
-jest.unmock('../app/App.jsx');
-jest.unmock('../app/actions.js');
+jest.unmock('../src/App.jsx');
+jest.unmock('../src/actions.js');
 
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../app/App.jsx';
+import App from '../src/App.jsx';
 
 describe('<App />', () => {
   var dispatch;

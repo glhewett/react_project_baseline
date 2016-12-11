@@ -1,6 +1,6 @@
-jest.unmock('../app/reducers.js');
+jest.unmock('../src/reducers.js');
 
-import { counter } from '../app/reducers.js';
+import { counter } from '../src/reducers.js';
 
 describe('Redux Reducers', () => {
 
