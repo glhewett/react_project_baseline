@@ -13,6 +13,7 @@
   "testFileExtensions": ["js"],
   "moduleFileExtensions": ["js", "jsx"],
   "modulePathIgnorePatterns": [],
+  "testResultsProcessor": "./node_modules/jest-junit",
   "unmockedModulePathPatterns": [
     "react",
     "react-dom",
