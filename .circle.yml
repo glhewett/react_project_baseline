@@ -1,0 +1,18 @@
+machine:
+  timezone:
+    America/Chicago
+  environment:
+    BROCCOLI_ENV: production
+  node:
+    version: 6.4.0
+deployment:
+  production:
+    branch: master
+    commands:
+      - s3-deploy './dist/images/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - s3-deploy './dist/app.css' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - s3-deploy './dist/app.js' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - s3-deploy './dist/*.map' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+
+
+
