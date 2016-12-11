@@ -6,10 +6,11 @@
   "scripts": {
     "build": "npm run clean && broccoli build dist",
     "clean": "rimraf dist coverage tmp",
+    "jest": "jest --config jest.conf.json --no-cache",
     "lint": "eslint src/ __tests__/",
     "packages": "npm list --depth=0",
     "serve": "broccoli serve",
-    "test": "jest --config jest.conf.json --no-cache",
+    "test": "npm run lint && npm run jest && npm run build",
     "watch": "jest --config jest.conf.json --no-cache --watch"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
@@ -37,7 +38,8 @@
     "eslint-plugin-react": "^5.2.2",
     "jest-cli": "^13.2.3",
     "react-addons-test-utils": "^15.4.1",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "s3-deploy": "^0.7.3"
   },
   "dependencies": {
     "react": "^15.4.1",
