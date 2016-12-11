@@ -1,6 +1,5 @@
 {
   "collectCoverage": true,
-  "coverageThreshold": 80,
   "coverageDirectory": "coverage",
   "coverageReporters": "lcov",
   "coverageThreshold": {
