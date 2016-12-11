@@ -23,9 +23,11 @@ var js = watchify('src', {
   }
 });
 
-var extractedSourceMap = new Extractor([js]);
+if (production) {
+  js = new Extractor([js]);
+}
 
-var less = compileLess('src', 'index.less', 'app.css', {
+var css = compileLess('src', 'index.less', 'app.css', {
   paths: ['.'],
   sourceMap: true,
   outputSourceFiles: true
@@ -33,4 +35,4 @@ var less = compileLess('src', 'index.less', 'app.css', {
 
 var assets = new Funnel('public');
 
-module.exports = mergeTrees([js, less, assets, extractedSourceMap], {overwrite: true});
+module.exports = mergeTrees([js, css, assets]);
