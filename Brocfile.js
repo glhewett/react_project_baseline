@@ -6,6 +6,7 @@ var env = require('broccoli-env').getEnv();
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var watchify = require('broccoli-watchify');
+var Extractor = require('broccoli-source-map').SourceMapExtractor;
 
 var production = env === 'production';
 
@@ -22,6 +23,8 @@ var js = watchify('src', {
   }
 });
 
+var extractedSourceMap = new Extractor([js]);
+
 var less = compileLess('src', 'index.less', 'app.css', {
   paths: ['.'],
   sourceMap: true,
@@ -30,4 +33,4 @@ var less = compileLess('src', 'index.less', 'app.css', {
 
 var assets = new Funnel('public');
 
-module.exports = mergeTrees([js, less, assets], {overwrite: true});
+module.exports = mergeTrees([js, less, assets, extractedSourceMap], {overwrite: true});

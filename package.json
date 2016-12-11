@@ -4,10 +4,13 @@
   "description": "React Project",
   "main": "",
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "jest --config jest.conf.json --no-cache",
+    "build": "npm run clean && broccoli build dist",
+    "clean": "rimraf dist coverage tmp",
+    "lint": "eslint src/ __tests__/",
+    "packages": "npm list --depth=0",
     "serve": "broccoli serve",
-    "build": "npm run clean && broccoli build dist"
+    "test": "jest --config jest.conf.json --no-cache",
+    "watch": "jest --config jest.conf.json --no-cache --watch"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
   "license": "MIT",
@@ -27,6 +30,7 @@
     "broccoli-funnel": "^1.0.9",
     "broccoli-less-single": "^0.6.3",
     "broccoli-merge-trees": "^1.1.5",
+    "broccoli-source-map": "^0.2.4",
     "broccoli-watchify": "^1.0.1",
     "enzyme": "^2.4.1",
     "eslint": "^3.12.0",
