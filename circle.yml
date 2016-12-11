@@ -7,6 +7,10 @@ machine:
   node:
     version: 6.4.0
 test:
+  override:
+    - npm run lint
+    - npm run test
+    - npm run build
   post:
     - mkdir -p $CIRCLE_ARTIFACTS
     - cp -r dist $CIRCLE_ARTIFACTS
@@ -17,6 +21,4 @@ deployment:
     commands:
       - s3-deploy './dist/images/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
       - s3-deploy './dist/fonts/**' --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-      - s3-deploy './dist/app.css' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-      - s3-deploy './dist/app.js' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
-      - s3-deploy './dist/*.map' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - s3-deploy './dist/*' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com

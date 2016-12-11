@@ -4,13 +4,12 @@
   "description": "React Project",
   "main": "",
   "scripts": {
-    "build": "npm run clean && broccoli build dist",
+    "build": "broccoli build dist",
     "clean": "rimraf dist coverage tmp",
-    "jest": "jest --config jest.conf.json --no-cache",
     "lint": "eslint src/ __tests__/",
     "packages": "npm list --depth=0",
     "serve": "broccoli serve",
-    "test": "npm run lint && npm run build && npm run jest",
+    "test": "jest --config jest.conf.json --no-cache",
     "watch": "jest --config jest.conf.json --no-cache --watch"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
