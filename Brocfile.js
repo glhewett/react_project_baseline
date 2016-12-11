@@ -23,7 +23,7 @@ var js = watchify('src', {
   }
 });
 
-if (production) {
+if (!production) {
   js = new Extractor([js]);
 }
 
