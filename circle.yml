@@ -14,8 +14,8 @@ test:
     - npm run lint
     - npm run test:
       - environment:
-        - JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/junit/test-results.xml
-        - JEST_SUITE_NAME: "Jest Unit Tests"
+        JEST_JUNIT_OUTPUT: $CIRCLE_TEST_REPORTS/junit/test-results.xml
+        JEST_SUITE_NAME: "Jest Unit Tests"
     - npm run build
   post:
     - mkdir -p $CIRCLE_ARTIFACTS
