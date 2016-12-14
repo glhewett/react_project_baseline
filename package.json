@@ -9,8 +9,8 @@
     "lint": "eslint src/ __tests__/",
     "packages": "npm list --depth=0",
     "serve": "broccoli serve",
-    "test": "jest --config jest.conf.json --no-cache",
-    "watch": "jest --config jest.conf.json --no-cache --watch"
+    "test": "jest --no-cache",
+    "watch": "jest --no-cache --watch"
   },
   "author": "Greg Hewett <greg@greghewett.com>",
   "license": "MIT",
@@ -47,5 +47,66 @@
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "yarn": "^0.17.10"
+  },
+  "babel": {
+    "presets": ["es2015", "react"],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": ["react"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "env": {
+      "node": true,
+      "browser": true,
+      "jasmine": true,
+      "jest": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "moduleFileExtensions": ["js", "jsx"],
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-dom",
+      "react-addons-test-utils",
+      "redux",
+      "react-redux",
+      "fbjs",
+      "enzyme",
+      "cheerio",
+      "htmlparser2",
+      "lodash",
+      "domhandler",
+      "object.assign",
+      "define-properties",
+      "function-bind",
+      "object-keys",
+      "object.values",
+      "es-abstract"
+    ]
   }
 }
