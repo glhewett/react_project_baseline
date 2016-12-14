@@ -32,4 +32,4 @@ deployment:
   production:
     branch: master
     commands:
-      - node_modules/.bin/s3-deploy './dist/**' --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
+      - node_modules/.bin/s3-deploy './dist/**' --cache 60 --gzip --etag --cwd './dist/' --region us_east_1 --bucket react-project-baseline.greghewett.com
