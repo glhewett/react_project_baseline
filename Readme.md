@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/glhewett/react_project_baseline/tree/master.svg?style=svg)](https://circleci.com/gh/glhewett/react_project_baseline/tree/master)
+
 CSS Project Baseline
 ====================
 
