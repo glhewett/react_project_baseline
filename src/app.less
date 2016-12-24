@@ -1,0 +1,61 @@
+.center-vert {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body, html, header, h1, small, div{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  position: relative;
+  font-size: 18px;
+  line-height: 32px;
+
+  @media (min-width: @screen-small-min) {
+    font-size: 20px;
+    line-height: 36px;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+#container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: @background;
+  background-color: @foreground;
+  height: 100%;
+
+  #banner {
+    margin: 0 9rem;
+    padding: 2rem 0;
+    border-top: 1px dashed @background;
+    border-bottom: 1px dashed @background;
+    .center-vert();
+    text-align: center;
+
+    h1 {
+      text-align: center;
+    }
+
+    button {
+      margin: 1em;
+      padding: 1em;
+      border: 2px solid @background;
+      background-color: @foreground;
+      color: @background;
+      font-size: 2em;
+    }
+  }
+}
+
+

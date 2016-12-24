@@ -49,7 +49,10 @@
     "yarn": "^0.17.10"
   },
   "babel": {
-    "presets": ["es2015", "react"],
+    "presets": [
+      "es2015",
+      "react"
+    ],
     "plugins": [
       "transform-object-rest-spread",
       "transform-class-properties"
@@ -57,7 +60,9 @@
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "plugins": ["react"],
+    "plugins": [
+      "react"
+    ],
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended"
@@ -88,7 +93,10 @@
         "statements": 50
       }
     },
-    "moduleFileExtensions": ["js", "jsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
     "unmockedModulePathPatterns": [
       "react",
       "react-dom",
